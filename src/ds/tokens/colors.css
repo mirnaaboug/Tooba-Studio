@@ -1,0 +1,37 @@
+:root{
+/* The Nile palette — four colors only (guidelines §03) */
+--nile:#123F3B;
+--oat:#F1E7D6;
+--apricot:#F08A5D;
+--papyrus:#A9BFA3;
+--white:#FFFFFF;
+
+/* Tone steps — "one step lighter" for tone-on-tone pattern & supergraphic (§06) */
+--nile-step:#1E4E49;
+--nile-step-2:#2A5D57;
+--oat-step:#E7DAC4;
+--apricot-press:#E07A4D;
+
+/* Semantic — surfaces */
+--surface-primary:var(--nile);      /* primary ground, ~50% */
+--surface-secondary:var(--oat);     /* secondary ground, ~28% */
+--surface-quiet:var(--papyrus);     /* quiet panels */
+--surface-paper:var(--white);
+
+/* Semantic — text */
+--text-on-light:var(--nile);        /* 9.5:1 on Oat */
+--text-on-dark:var(--oat);          /* 9.5:1 on Nile */
+--text-on-accent:var(--nile);       /* Apricot buttons take Nile labels (4.7:1) */
+--text-muted-on-light:rgba(18,63,59,.72);
+--text-muted-on-dark:rgba(241,231,214,.72);
+
+/* Semantic — accent (dots, buttons, highlights only) */
+--accent:var(--apricot);
+--accent-press:var(--apricot-press);
+
+/* Lines */
+--line-on-light:rgba(18,63,59,.18);
+--line-on-dark:rgba(241,231,214,.22);
+--hairline-on-light:var(--nile);
+--hairline-on-dark:var(--oat);
+}

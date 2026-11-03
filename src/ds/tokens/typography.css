@@ -1,0 +1,35 @@
+:root{
+--font-serif:"Fraunces",Georgia,serif;          /* voice: wordmark, headlines, pull quotes. Regular only */
+--font-sans:"Outfit",system-ui,sans-serif;      /* work: taglines, labels, all body copy */
+--font-arabic:"Outfit","Noto Naskh Arabic",sans-serif;
+
+--weight-light:300;--weight-regular:400;--weight-medium:500;
+
+/* Tracking */
+--tracking-wordmark:.14em;   /* Fraunces caps — wordmark only */
+--tracking-label:.24em;      /* Outfit Medium caps — eyebrows, taglines */
+--tracking-headline:-.01em;
+
+/* Scale (screen px, derived from pt hierarchy ×1.333) */
+--fs-display:72px;
+--fs-headline:48px;     /* 32–48pt */
+--fs-headline-sm:36px;
+--fs-subhead:24px;      /* 18–24pt */
+--fs-intro:20px;        /* Outfit Light intros */
+--fs-body:16px;         /* 10–12pt */
+--fs-caption:13px;      /* 8–9pt */
+--fs-eyebrow:12px;      /* 8–10pt */
+
+--lh-headline:1.1; /* @kind other */
+--lh-subhead:1.25; /* @kind other */
+--lh-body:1.5; /* @kind other */
+--measure:68ch;         /* 60–75 characters */
+
+/* Semantic */
+--type-headline:400 var(--fs-headline)/var(--lh-headline) var(--font-serif);
+--type-subhead:400 var(--fs-subhead)/var(--lh-subhead) var(--font-serif);
+--type-intro:300 var(--fs-intro)/1.4 var(--font-sans);
+--type-body:400 var(--fs-body)/var(--lh-body) var(--font-sans);
+--type-caption:400 var(--fs-caption)/1.4 var(--font-sans);
+--type-eyebrow:500 var(--fs-eyebrow)/1.2 var(--font-sans);
+}

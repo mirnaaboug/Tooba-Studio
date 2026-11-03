@@ -1,0 +1,55 @@
+html, body { margin: 0; padding: 0; background: #F1E7D6; }
+*, *::before, *::after { box-sizing: border-box; }
+body { color: var(--nile); font: var(--type-body); -webkit-font-smoothing: antialiased; }
+a { color: var(--nile); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--nile-step-2); }
+button { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--apricot); outline-offset: 2px; }
+
+@keyframes tbIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes tbFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tbNudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@keyframes tbGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Selectable controls are <button>s; reset native button chrome. */
+.tb-opt { font: inherit; color: inherit; text-align: left; appearance: none; margin: 0; }
+
+/* Interactive cards lift 2px and gain a Nile line (!important beats the entry animation's fill). */
+.tb-lift:hover { transform: translateY(-2px) !important; border-color: var(--nile) !important; }
+.tb-press:active { transform: translateY(1px) !important; }
+.tb-rail:hover { background: var(--nile-step) !important; }
+.tb-cue:hover { background: var(--nile-step) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+}
+
+/* ——— Narrow-screen fallbacks (the design targets desktop web) ——— */
+@media (max-width: 1100px) {
+  .tb-hero-title { font-size: 56px !important; }
+  .tb-landing { grid-template-columns: minmax(0, 1fr) !important; gap: 48px !important; padding: 80px 32px 96px !important; }
+  .tb-landing-intro { position: static !important; }
+  .tb-flow { grid-template-columns: 260px minmax(0, 1fr) !important; }
+  .tb-step { padding: 48px 40px 48px !important; }
+  .tb-foot { padding: 18px 40px !important; }
+}
+@media (max-width: 820px) {
+  .tb-header { padding: 16px 20px !important; }
+  .tb-hero-card { left: 16px !important; right: 16px !important; bottom: 16px !important; padding: 28px 24px !important; }
+  .tb-hero-title { font-size: 44px !important; }
+  .tb-cue { display: none !important; }
+  .tb-landing { padding: 64px 16px 80px !important; }
+  .tb-landing-form { padding: 24px !important; }
+  .tb-flow { grid-template-columns: minmax(0, 1fr) !important; height: auto !important; min-height: 100vh; }
+  .tb-rail-aside { display: none !important; }
+  .tb-main { height: auto !important; min-height: 100vh; }
+  .tb-step { padding: 32px 16px !important; }
+  .tb-step h2 { font-size: 36px !important; }
+  .tb-foot { padding: 14px 16px !important; position: sticky; bottom: 0; }
+  .tb-grid-2, .tb-grid-3, .tb-rec, .tb-review { grid-template-columns: minmax(0, 1fr) !important; }
+  .tb-rec-why { border-left: none !important; padding-left: 0 !important; border-top: 1px solid var(--line-on-dark); padding-top: 24px; }
+  .tb-review-row { grid-template-columns: minmax(0, 1fr) auto !important; }
+  .tb-review-row > :first-child { grid-column: 1 / -1; }
+  .tb-done { padding: 16px !important; }
+  .tb-done-card { padding: 28px 24px !important; }
+}
