@@ -1,0 +1,31 @@
+:root{
+/* Spacing — brick unit. Mark = 200u, cell 88u, gap 12u. Screen base 4px. */
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;--space-10:128px;
+
+/* Radii — "8 px radius on every container — the soft brick cell" */
+--radius-cell:8px;
+--radius-sm:4px;
+--radius-none:0;
+
+/* Strokes */
+--stroke-icon:2.5px;      /* icons on 48 grid */
+--stroke-hairline:1px;    /* lockup divider */
+
+/* Icon sizes — whole steps only */
+--icon-48:48px;--icon-32:32px;--icon-24:24px;--icon-16:16px;
+
+/* Logo minimums */
+--logo-lockup-min:140px;--logo-mark-min:48px;
+
+/* Elevation — the brand is flat; no shadows in source. One quiet lift for overlays only. */
+--shadow-none:none;
+--shadow-overlay:0 12px 32px rgba(18,63,59,.18);
+
+/* Motion — none specified in source; calm, short fades */
+--ease-standard:cubic-bezier(.2,.7,.2,1); /* @kind other */
+--dur-fast:120ms; /* @kind other */
+--dur-base:200ms; /* @kind other */
+
+/* Pattern */
+--pattern-size:240px;
+}

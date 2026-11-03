@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/tokens/assets.css">
+  <link rel="stylesheet" href="_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/styles.css">
+  <script src="_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/_ds_bundle.js"></script>
+  <style>
+    html,body{margin:0;padding:0;background:#F1E7D6;}
+    *{box-sizing:border-box;}
+    a{color:var(--nile);text-decoration:underline;text-underline-offset:3px;}
+    a:hover{color:var(--nile-step-2);}
+    @keyframes tbIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    @keyframes tbFade{from{opacity:0}to{opacity:1}}
+    @keyframes tbNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+    @keyframes tbGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  </style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--oat);color:var(--nile);font:var(--type-body);">
+
+  <sc-if value="{{ isWelcome }}" hint-placeholder-val="{{ true }}">
+    <div style="background:var(--oat);">
+      <section style="position:relative;height:100vh;min-height:600px;background:var(--nile);overflow:hidden;">
+        <canvas ref="{{ wallRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:pan-y;"></canvas>
+        <header style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:var(--nile);animation:tbFade 500ms 200ms both;">
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Logo" variant="horizontal" color="oat" height="{{ 40 }}" hint-size="136px,40px"></x-import>
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="outline" tone="dark" size="sm" onClick="{{ scrollToStart }}" hint-size="170px,36px">Start your project</x-import>
+        </header>
+        <div style="position:absolute;left:40px;bottom:40px;max-width:780px;background:var(--nile);color:var(--oat);border-radius:8px;padding:36px 40px;display:flex;flex-direction:column;gap:18px;animation:tbIn 800ms 900ms both cubic-bezier(.2,.7,.2,1);">
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" accent="{{ true }}" hint-size="220px,14px">Tooba Studio · Cairo</x-import>
+          <h1 style="font:400 72px/1.02 var(--font-serif);letter-spacing:-.01em;margin:0;text-wrap:pretty;">Every brand starts with a brick.</h1>
+          <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-dark);max-width:44ch;">Strategic, bilingual brand identities in days, not months. Grab a brick and throw it, or click to lay more.</p>
+        </div>
+        <div onClick="{{ scrollToStart }}" style="position:absolute;right:40px;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:14px;background:var(--nile);color:var(--oat);border-radius:8px;padding:18px 18px 16px;cursor:pointer;animation:tbIn 700ms 1400ms both cubic-bezier(.2,.7,.2,1);" style-hover="background:var(--nile-step);">
+          <span style="font:500 11px/1 var(--font-sans);letter-spacing:var(--tracking-label);text-transform:uppercase;writing-mode:vertical-rl;">Scroll to start</span>
+          <div style="animation:tbNudge 1600ms ease-in-out infinite;">
+            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 6 }}" vertical="{{ true }}" hint-size="6px,18px"></x-import>
+          </div>
+        </div>
+      </section>
+
+      <section ref="{{ landingRef }}" style="max-width:1240px;margin:0 auto;padding:112px 64px 120px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:80px;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:24px;position:sticky;top:48px;">
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">01 / 07 · Your business</x-import>
+          <h2 style="font:400 56px/1.05 var(--font-serif);letter-spacing:-.01em;margin:0;text-wrap:pretty;">Let's start with you.</h2>
+          <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);max-width:42ch;">Seven short steps, about four minutes. We'll recommend a fixed-price package, and your strategy brief lands within 48 hours.</p>
+          <div style="display:flex;flex-direction:column;border-top:1px solid var(--line-on-light);margin-top:16px;">
+            <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line-on-light);">
+              <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Icon" name="speed" size="{{ 32 }}" hint-size="32px,32px"></x-import>
+              <div style="display:flex;flex-direction:column;gap:2px;"><span style="font:400 20px/1.2 var(--font-serif);">A brief in 48 hours</span><span style="font:var(--type-caption);color:var(--text-muted-on-light);">In writing, two days after you send this.</span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line-on-light);">
+              <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Icon" name="proposal" size="{{ 32 }}" hint-size="32px,32px"></x-import>
+              <div style="display:flex;flex-direction:column;gap:2px;"><span style="font:400 20px/1.2 var(--font-serif);">Fixed prices</span><span style="font:var(--type-caption);color:var(--text-muted-on-light);">Every package priced up front, every quote dated.</span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line-on-light);">
+              <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Icon" name="identity" size="{{ 32 }}" hint-size="32px,32px"></x-import>
+              <div style="display:flex;flex-direction:column;gap:2px;"><span style="font:400 20px/1.2 var(--font-serif);">Three creative routes</span><span style="font:var(--type-caption);color:var(--text-muted-on-light);">Three distinct directions. You pick one.</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--white);border:1.5px solid var(--line-on-light);border-radius:8px;padding:40px;display:flex;flex-direction:column;gap:28px;">
+          <sc-if value="{{ hasSaved }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--oat);border-radius:8px;padding:14px 18px;">
+              <span style="font:var(--type-caption);">You've started before. Pick up where you left off?</span>
+              <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="secondary" size="sm" onClick="{{ resume }}" hint-size="120px,36px">Continue</x-import>
+            </div>
+          </sc-if>
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="Business or working name" placeholder="e.g. Sahel House" value="{{ biz.name }}" onChange="{{ on.bizName }}" hint-size="100%,76px"></x-import>
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="City" placeholder="e.g. Cairo" value="{{ biz.city }}" onChange="{{ on.bizCity }}" hint-size="100%,76px"></x-import>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="120px,14px">Industry</x-import>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <sc-for list="{{ industries }}" as="o" hint-placeholder-count="6">
+                <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:8px;cursor:pointer;font:400 15px/1 var(--font-sans);background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }};transition:background 180ms,color 180ms,border-color 180ms,transform 120ms;" style-active="transform:translateY(1px);">
+                  <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                    <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 5 }}" hint-size="15px,5px"></x-import>
+                  </sc-if>
+                  {{ o.label }}
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="In a sentence, what do you do?" multiline="{{ true }}" rows="{{ 3 }}" placeholder="e.g. A six-room guesthouse in Diplo, opening next summer." hint="Optional, but it sharpens our recommendation." value="{{ biz.about }}" onChange="{{ on.bizAbout }}" hint-size="100%,140px"></x-import>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid var(--line-on-light);padding-top:24px;">
+            <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ landingHint }}</span>
+            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="primary" size="lg" disabled="{{ cantLanding }}" onClick="{{ fromLanding }}" hint-size="160px,52px">Continue</x-import>
+          </div>
+        </div>
+      </section>
+
+      <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.PatternSurface" padding="0" hint-size="100%,160px"><div style="height:160px;"></div></x-import>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isFlow }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:320px minmax(0,1fr);height:100vh;">
+      <aside style="background:var(--nile);color:var(--oat);display:flex;flex-direction:column;padding:40px 28px;gap:48px;overflow:auto;animation:tbFade 400ms both;">
+        <div onClick="{{ goWelcome }}" style="cursor:pointer;display:flex;padding:0 8px;">
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Logo" variant="horizontal" color="oat" height="{{ 44 }}" hint-size="150px,44px"></x-import>
+        </div>
+        <nav style="display:flex;flex-direction:column;gap:4px;">
+          <sc-for list="{{ rail }}" as="r" hint-placeholder-count="7">
+            <div onClick="{{ r.go }}" style="display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;cursor:{{ r.cursor }};background:{{ r.bg }};opacity:{{ r.op }};transition:background 200ms cubic-bezier(.2,.7,.2,1),opacity 200ms;" style-hover="background:var(--nile-step);">
+              <span style="font:500 12px/1 var(--font-sans);letter-spacing:.12em;">{{ r.num }}</span>
+              <span style="font:400 15px/1.3 var(--font-sans);">{{ r.label }}</span>
+              <sc-if value="{{ r.active }}" hint-placeholder-val="{{ false }}">
+                <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 6 }}" hint-size="18px,6px"></x-import>
+              </sc-if>
+              <sc-if value="{{ r.done }}" hint-placeholder-val="{{ false }}">
+                <span style="font:var(--type-caption);color:var(--text-muted-on-dark);">Done</span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </nav>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line-on-dark);padding:24px 8px 0;">
+          <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ false }}">
+            <div key="{{ sel.key }}" style="display:flex;flex-direction:column;gap:10px;animation:tbIn 260ms both cubic-bezier(.2,.7,.2,1);">
+              <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" tone="dark" hint-size="140px,14px">Your selection</x-import>
+              <div style="font:400 24px/1.2 var(--font-serif);">{{ sel.name }}</div>
+              <div style="font:var(--type-caption);color:var(--text-muted-on-dark);">{{ sel.count }} · {{ sel.days }}</div>
+              <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}">
+                <div style="font:400 20px/1.2 var(--font-sans);margin-top:4px;">{{ sel.price }}</div>
+              </sc-if>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noSelection }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Icon" name="chat" tone="dark" size="{{ 24 }}" hint-size="24px,24px"></x-import>
+              <div style="font:var(--type-caption);color:var(--text-muted-on-dark);">Questions first? Message us on WhatsApp. We reply within the working day.</div>
+            </div>
+          </sc-if>
+        </div>
+      </aside>
+
+      <main style="display:flex;flex-direction:column;min-width:0;height:100vh;">
+        <div style="height:3px;background:var(--oat-step);flex:none;">
+          <div style="height:3px;background:var(--nile);width:{{ progress }};transition:width 400ms cubic-bezier(.2,.7,.2,1);"></div>
+        </div>
+        <div ref="{{ scrollRef }}" style="flex:1;overflow:auto;">
+          <div key="{{ step }}" style="max-width:1040px;padding:64px 80px 56px;display:flex;flex-direction:column;gap:40px;animation:tbIn 320ms both cubic-bezier(.2,.7,.2,1);">
+
+            <sc-if value="{{ s.about }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:40px;">
+                <header style="display:flex;flex-direction:column;gap:16px;max-width:640px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">01 / 07 · Your business</x-import>
+                  <h2 style="font:400 48px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;">Tell us what you're building.</h2>
+                  <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);">A few lines is enough. We read every answer before we recommend anything.</p>
+                </header>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;max-width:760px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="Business or working name" placeholder="e.g. Sahel House" value="{{ biz.name }}" onChange="{{ on.bizName }}" hint-size="100%,76px"></x-import>
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="City" placeholder="e.g. Cairo" value="{{ biz.city }}" onChange="{{ on.bizCity }}" hint-size="100%,76px"></x-import>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px;max-width:760px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="120px,14px">Industry</x-import>
+                  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                    <sc-for list="{{ industries }}" as="o" hint-placeholder-count="6">
+                      <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:8px;cursor:pointer;font:400 15px/1 var(--font-sans);background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }};transition:background 180ms,color 180ms,border-color 180ms,transform 120ms;" style-active="transform:translateY(1px);">
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 5 }}" hint-size="15px,5px"></x-import>
+                        </sc-if>
+                        {{ o.label }}
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="In a sentence, what do you do?" multiline="{{ true }}" rows="{{ 3 }}" placeholder="e.g. A six-room guesthouse in Diplo, opening next summer." hint="Optional, but it sharpens our recommendation." value="{{ biz.about }}" onChange="{{ on.bizAbout }}" style="max-width:760px;" hint-size="100%,140px"></x-import>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ s.stage }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:40px;">
+                <header style="display:flex;flex-direction:column;gap:16px;max-width:640px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">02 / 07 · Stage</x-import>
+                  <h2 style="font:400 48px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;">Where are you starting from?</h2>
+                  <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);">This decides where we lay the first brick.</p>
+                </header>
+                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;">
+                  <sc-for list="{{ stages }}" as="o" hint-placeholder-count="3">
+                    <div onClick="{{ o.pick }}" style="display:grid;grid-template-columns:32px minmax(0,1fr) 22px;gap:16px;align-items:start;padding:20px;border-radius:8px;cursor:pointer;background:{{ o.bg }};border:1.5px solid {{ o.bd }};transition:border-color 200ms,background 200ms,transform 200ms cubic-bezier(.2,.7,.2,1);animation:tbIn 400ms {{ o.delay }} both cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-2px);border-color:var(--nile);">
+                      <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Icon" name="{{ o.icon }}" size="{{ 32 }}" hint-size="32px,32px"></x-import>
+                      <div style="display:flex;flex-direction:column;gap:4px;">
+                        <div style="font:400 20px/1.2 var(--font-serif);">{{ o.label }}</div>
+                        <div style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ o.desc }}</div>
+                      </div>
+                      <div style="width:22px;height:22px;border-radius:50%;border:1.5px solid var(--nile);display:flex;align-items:center;justify-content:center;background:{{ o.fill }};transition:background 200ms;">
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 4 }}" gap="{{ 2 }}" hint-size="10px,4px"></x-import>
+                        </sc-if>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ s.services }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:40px;">
+                <header style="display:flex;flex-direction:column;gap:16px;max-width:640px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">03 / 07 · Services</x-import>
+                  <h2 style="font:400 48px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;">Here's what we recommend, and why.</h2>
+                  <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);">Take it as is, or add and remove services below. The price updates as you go.</p>
+                </header>
+                <div style="background:var(--nile);color:var(--oat);border-radius:8px;padding:36px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;animation:tbIn 500ms 80ms both cubic-bezier(.2,.7,.2,1);">
+                  <div style="display:flex;flex-direction:column;gap:14px;">
+                    <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" accent="{{ true }}" hint-size="160px,14px">We recommend</x-import>
+                    <div style="font:400 40px/1.1 var(--font-serif);">{{ rec.name }}</div>
+                    <div style="font:var(--type-body);color:var(--text-muted-on-dark);">{{ rec.list }}</div>
+                    <div style="display:flex;align-items:baseline;gap:16px;margin-top:8px;flex-wrap:wrap;">
+                      <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}">
+                        <span style="font:400 28px/1 var(--font-sans);">{{ rec.price }}</span>
+                      </sc-if>
+                      <span style="font:var(--type-caption);color:var(--text-muted-on-dark);">{{ rec.days }}</span>
+                    </div>
+                    <div style="margin-top:12px;display:flex;gap:12px;align-items:center;min-height:44px;">
+                      <sc-if value="{{ rec.notActive }}" hint-placeholder-val="{{ false }}">
+                        <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="primary" onClick="{{ rec.use }}" hint-size="200px,44px">Use this package</x-import>
+                      </sc-if>
+                      <sc-if value="{{ rec.active }}" hint-placeholder-val="{{ true }}">
+                        <div style="display:flex;align-items:center;gap:10px;font:500 12px/1 var(--font-sans);letter-spacing:var(--tracking-label);text-transform:uppercase;animation:tbFade 300ms both;">
+                          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 6 }}" hint-size="18px,6px"></x-import>
+                          Selected
+                        </div>
+                      </sc-if>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:16px;border-left:1px solid var(--line-on-dark);padding-left:40px;">
+                    <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" tone="dark" hint-size="80px,14px">Why</x-import>
+                    <sc-for list="{{ rec.reasons }}" as="t" hint-placeholder-count="3">
+                      <div style="display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:baseline;animation:tbIn 400ms {{ t.delay }} both cubic-bezier(.2,.7,.2,1);">
+                        <span style="font:500 12px/1 var(--font-sans);letter-spacing:.12em;color:var(--apricot);">{{ t.n }}</span>
+                        <span style="font:var(--type-body);">{{ t.text }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="160px,14px">Other packages</x-import>
+                  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;">
+                    <sc-for list="{{ otherPkgs }}" as="p" hint-placeholder-count="3">
+                      <div onClick="{{ p.use }}" style="display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:8px;cursor:pointer;background:var(--white);border:1.5px solid {{ p.bd }};transition:border-color 200ms,transform 200ms cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-2px);border-color:var(--nile);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                          <span style="font:400 20px/1.2 var(--font-serif);">{{ p.name }}</span>
+                          <sc-if value="{{ p.sel }}" hint-placeholder-val="{{ false }}">
+                            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 5 }}" hint-size="15px,5px"></x-import>
+                          </sc-if>
+                        </div>
+                        <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ p.meta }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+                    <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="160px,14px">Customise</x-import>
+                    <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ sel.note }}</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;">
+                    <sc-for list="{{ services }}" as="o" hint-placeholder-count="9">
+                      <div onClick="{{ o.toggle }}" style="display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:8px;cursor:pointer;background:{{ o.bg }};border:1.5px solid {{ o.bd }};transition:border-color 200ms,background 200ms,transform 120ms;animation:tbIn 360ms {{ o.delay }} both cubic-bezier(.2,.7,.2,1);" style-active="transform:translateY(1px);">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Icon" name="{{ o.icon }}" size="{{ 32 }}" hint-size="32px,32px"></x-import>
+                          <div style="width:22px;height:22px;border-radius:4px;border:1.5px solid var(--nile);display:flex;align-items:center;justify-content:center;background:{{ o.fill }};transition:background 200ms;">
+                            <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                              <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 4 }}" gap="{{ 2 }}" hint-size="10px,4px"></x-import>
+                            </sc-if>
+                          </div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <span style="font:400 20px/1.2 var(--font-serif);">{{ o.name }}</span>
+                          <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ o.desc }}</span>
+                        </div>
+                        <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}">
+                          <span style="font:500 13px/1 var(--font-sans);margin-top:auto;">{{ o.price }}</span>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ s.timeline }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:40px;">
+                <header style="display:flex;flex-direction:column;gap:16px;max-width:640px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">04 / 07 · Timeline &amp; budget</x-import>
+                  <h2 style="font:400 48px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;">When do you need it?</h2>
+                  <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);">We put real dates on it. Never "soon".</p>
+                </header>
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="120px,14px">Start</x-import>
+                  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;">
+                    <sc-for list="{{ timelines }}" as="o" hint-placeholder-count="3">
+                      <div onClick="{{ o.pick }}" style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-radius:8px;cursor:pointer;background:{{ o.bg }};border:1.5px solid {{ o.bd }};transition:border-color 200ms,background 200ms,transform 200ms cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-2px);border-color:var(--nile);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                          <span style="font:400 20px/1.2 var(--font-serif);">{{ o.label }}</span>
+                          <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 5 }}" hint-size="15px,5px"></x-import>
+                          </sc-if>
+                        </div>
+                        <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ o.desc }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <sc-if value="{{ hasTimeline }}" hint-placeholder-val="{{ false }}">
+                  <div style="background:var(--papyrus);border-radius:8px;padding:28px;display:flex;flex-direction:column;gap:20px;animation:tbIn 400ms both cubic-bezier(.2,.7,.2,1);">
+                    <div style="position:relative;height:2px;background:rgba(18,63,59,.18);">
+                      <div key="{{ dates.key }}" style="position:absolute;inset:0;background:var(--nile);transform-origin:left;animation:tbGrow 900ms both cubic-bezier(.2,.7,.2,1);"></div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;">
+                      <div style="display:flex;flex-direction:column;gap:8px;">
+                        <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="120px,14px">Strategy brief</x-import>
+                        <span style="font:400 22px/1.2 var(--font-serif);">{{ dates.brief }}</span>
+                      </div>
+                      <div style="display:flex;flex-direction:column;gap:8px;">
+                        <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="120px,14px">Work starts</x-import>
+                        <span style="font:400 22px/1.2 var(--font-serif);">{{ dates.start }}</span>
+                      </div>
+                      <div style="display:flex;flex-direction:column;gap:8px;">
+                        <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="120px,14px">Delivery</x-import>
+                        <span style="font:400 22px/1.2 var(--font-serif);">{{ dates.end }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="160px,14px">Budget you have in mind</x-import>
+                  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                    <sc-for list="{{ budgets }}" as="o" hint-placeholder-count="3">
+                      <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:8px;cursor:pointer;font:400 15px/1 var(--font-sans);background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }};transition:background 180ms,color 180ms,transform 120ms;" style-active="transform:translateY(1px);">
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 5 }}" hint-size="15px,5px"></x-import>
+                        </sc-if>
+                        {{ o.label }}
+                      </div>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ overBudget }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;background:var(--white);border:1.5px solid var(--line-on-light);border-radius:8px;padding:20px 24px;margin-top:8px;animation:tbIn 300ms both cubic-bezier(.2,.7,.2,1);">
+                      <div style="display:flex;gap:14px;align-items:flex-start;">
+                        <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 6 }}" style="margin-top:8px;" hint-size="18px,6px"></x-import>
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <span style="font:400 18px/1.3 var(--font-serif);">Your selection is {{ sel.price }}, above this range.</span>
+                          <span style="font:var(--type-caption);color:var(--text-muted-on-light);">We can phase it: start with {{ phase.name }} ({{ phase.price }}) and add the rest when you're ready.</span>
+                        </div>
+                      </div>
+                      <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="outline" size="sm" onClick="{{ phase.use }}" hint-size="180px,36px">Switch to {{ phase.name }}</x-import>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ s.language }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:40px;">
+                <header style="display:flex;flex-direction:column;gap:16px;max-width:640px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">05 / 07 · Language</x-import>
+                  <h2 style="font:400 48px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;">Who will read your brand?</h2>
+                  <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);">Arabic is written, not translated. Egyptian colloquial for social, Modern Standard for proposals.</p>
+                </header>
+                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;">
+                  <sc-for list="{{ langs }}" as="o" hint-placeholder-count="3">
+                    <div onClick="{{ o.pick }}" style="display:flex;flex-direction:column;gap:16px;padding:28px 24px;border-radius:8px;cursor:pointer;background:{{ o.bg }};border:1.5px solid {{ o.bd }};min-height:230px;transition:border-color 200ms,background 200ms,transform 200ms cubic-bezier(.2,.7,.2,1);animation:tbIn 400ms {{ o.delay }} both cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-2px);border-color:var(--nile);">
+                      <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font:400 40px/1 var(--font-serif);">{{ o.glyph }}</span>
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 6 }}" hint-size="18px,6px"></x-import>
+                        </sc-if>
+                      </div>
+                      <span style="font:400 24px/1.2 var(--font-serif);">{{ o.label }}</span>
+                      <span style="font:var(--type-body);color:var(--text-muted-on-light);margin-top:auto;">{{ o.desc }}</span>
+                      <sc-if value="{{ o.rec }}" hint-placeholder-val="{{ false }}">
+                        <span style="align-self:flex-start;font:500 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;background:var(--papyrus);padding:6px 8px;border-radius:4px;">Recommended</span>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ s.contact }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:40px;">
+                <header style="display:flex;flex-direction:column;gap:16px;max-width:640px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">06 / 07 · Contact details</x-import>
+                  <h2 style="font:400 48px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;">Where should the brief land?</h2>
+                  <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);">One person, one channel. We'll keep it that simple.</p>
+                </header>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;max-width:760px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="Your name" placeholder="Full name" value="{{ contact.name }}" onChange="{{ on.cName }}" hint-size="100%,76px"></x-import>
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="Role" placeholder="e.g. Founder" value="{{ contact.role }}" onChange="{{ on.cRole }}" hint-size="100%,76px"></x-import>
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="Email" type="email" placeholder="you@company.com" value="{{ contact.email }}" onChange="{{ on.cEmail }}" error="{{ emailError }}" hint-size="100%,76px"></x-import>
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Input" label="Phone" placeholder="+20" value="{{ contact.phone }}" onChange="{{ on.cPhone }}" hint-size="100%,76px"></x-import>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px;max-width:760px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="160px,14px">Best way to reach you</x-import>
+                  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                    <sc-for list="{{ channels }}" as="o" hint-placeholder-count="3">
+                      <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:8px;cursor:pointer;font:400 15px/1 var(--font-sans);background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }};transition:background 180ms,color 180ms,transform 120ms;" style-active="transform:translateY(1px);">
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}">
+                          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 5 }}" hint-size="15px,5px"></x-import>
+                        </sc-if>
+                        {{ o.label }}
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ s.review }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:40px;">
+                <header style="display:flex;flex-direction:column;gap:16px;max-width:640px;">
+                  <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">07 / 07 · Review</x-import>
+                  <h2 style="font:400 48px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;">One last look before we start.</h2>
+                  <p style="font:var(--type-intro);margin:0;color:var(--text-muted-on-light);">Nothing is charged today. Your dated quote arrives with the brief.</p>
+                </header>
+                <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start;">
+                  <div style="background:var(--white);border-radius:8px;border:1.5px solid var(--line-on-light);">
+                    <sc-for list="{{ review }}" as="r" hint-placeholder-count="7">
+                      <div style="display:grid;grid-template-columns:140px minmax(0,1fr) auto;gap:20px;padding:20px 24px;border-top:{{ r.border }};align-items:baseline;animation:tbIn 360ms {{ r.delay }} both cubic-bezier(.2,.7,.2,1);">
+                        <span style="font:500 11px/1.4 var(--font-sans);letter-spacing:var(--tracking-label);text-transform:uppercase;">{{ r.label }}</span>
+                        <div style="display:flex;flex-direction:column;gap:2px;">
+                          <span style="font:var(--type-body);">{{ r.value }}</span>
+                          <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ r.sub }}</span>
+                        </div>
+                        <a onClick="{{ r.edit }}" style="font:var(--type-caption);cursor:pointer;">Edit</a>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="background:var(--nile);color:var(--oat);border-radius:8px;padding:28px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;">
+                    <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" tone="dark" hint-size="120px,14px">Fixed price</x-import>
+                    <div style="font:400 28px/1.15 var(--font-serif);margin-bottom:6px;">{{ sel.name }}</div>
+                    <sc-for list="{{ selList }}" as="x" hint-placeholder-count="5">
+                      <div style="display:flex;justify-content:space-between;gap:12px;font:var(--type-caption);color:var(--text-muted-on-dark);">
+                        <span>{{ x.name }}</span>
+                        <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}"><span>{{ x.price }}</span></sc-if>
+                      </div>
+                    </sc-for>
+                    <sc-if value="{{ savingRow }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;justify-content:space-between;font:var(--type-caption);">
+                        <span>Package saving</span><span>{{ sel.saving }}</span>
+                      </div>
+                    </sc-if>
+                    <div style="border-top:1px solid var(--line-on-dark);padding-top:16px;margin-top:4px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;">
+                      <span style="font:var(--type-caption);color:var(--text-muted-on-dark);">{{ sel.days }}</span>
+                      <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}">
+                        <span style="font:400 28px/1 var(--font-sans);">{{ sel.price }}</span>
+                      </sc-if>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+          </div>
+        </div>
+        <footer style="flex:none;border-top:1px solid var(--line-on-light);padding:18px 80px;display:flex;justify-content:space-between;align-items:center;gap:24px;background:var(--oat);">
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="ghost" onClick="{{ back }}" hint-size="100px,44px">Back</x-import>
+          <div style="display:flex;align-items:center;gap:20px;">
+            <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ footHint }}</span>
+            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="{{ nextVariant }}" disabled="{{ cantNext }}" onClick="{{ next }}" hint-size="160px,44px">{{ nextLabel }}</x-import>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isSending }}" hint-placeholder-val="{{ false }}">
+    <div style="height:100vh;background:var(--nile);color:var(--oat);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;animation:tbFade 300ms both;">
+      <div style="display:flex;gap:10px;">
+        <sc-for list="{{ sendBricks }}" as="b" hint-placeholder-count="4">
+          <div style="width:44px;height:22px;border-radius:6px;background:{{ b.bg }};transition:background 240ms cubic-bezier(.2,.7,.2,1);"></div>
+        </sc-for>
+      </div>
+      <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" tone="dark" hint-size="200px,14px">Laying the first brick</x-import>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;height:100vh;overflow:hidden;background:var(--nile);display:flex;align-items:center;padding:32px 56px;">
+      <canvas ref="{{ wallRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:pointer;"></canvas>
+      <div style="position:relative;max-width:700px;width:100%;max-height:100%;overflow:auto;background:var(--oat);border-radius:8px;padding:36px 44px;display:flex;flex-direction:column;gap:24px;animation:tbIn 700ms 600ms both cubic-bezier(.2,.7,.2,1);">
+        <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Logo" variant="horizontal" color="nile" height="{{ 48 }}" hint-size="163px,48px"></x-import>
+        <div style="display:flex;flex-direction:column;gap:24px;max-width:600px;">
+          <div style="display:flex;align-items:center;gap:14px;animation:tbIn 500ms 100ms both cubic-bezier(.2,.7,.2,1);">
+            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Dots" size="{{ 8 }}" hint-size="24px,8px"></x-import>
+            <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Eyebrow" hint-size="200px,14px">Received · {{ refNo }}</x-import>
+          </div>
+          <h1 style="font:400 40px/1.1 var(--font-serif);letter-spacing:-.01em;margin:0;text-wrap:pretty;animation:tbIn 600ms 250ms both cubic-bezier(.2,.7,.2,1);">Thank you, {{ firstName }}. Your strategy brief lands within 48 hours.</h1>
+          <p style="font:var(--type-intro);margin:0;max-width:50ch;animation:tbIn 600ms 400ms both cubic-bezier(.2,.7,.2,1);">We've sent a copy to {{ contact.email }}. Expect it by {{ dates.brief }}, with your dated quote for {{ sel.name }}.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line-on-light);padding-top:24px;">
+          <sc-for list="{{ nextSteps }}" as="n" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:8px;animation:tbIn 500ms {{ n.delay }} both cubic-bezier(.2,.7,.2,1);">
+              <span style="font:500 12px/1 var(--font-sans);letter-spacing:.12em;">{{ n.num }}</span>
+              <span style="font:400 20px/1.2 var(--font-serif);">{{ n.title }}</span>
+              <span style="font:var(--type-caption);color:var(--text-muted-on-light);">{{ n.when }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:12px;animation:tbFade 500ms 1100ms both;">
+          <x-import component-from-global-scope="ToobaStudioDesignSystem_55f68e.Button" variant="secondary" onClick="{{ restart }}" hint-size="200px,44px">Start another project</x-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;jumpTo&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;welcome&quot;, &quot;services&quot;, &quot;review&quot;, &quot;confirmation&quot;], &quot;default&quot;: &quot;welcome&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Preview&quot;}}">
+const SERVICES = [
+  { id: 'strategy', name: 'Strategy', icon: 'strategy', price: 18000, desc: 'Positioning, audience, voice.' },
+  { id: 'naming', name: 'Naming', icon: 'naming', price: 15000, desc: 'A name that works in Arabic and English.' },
+  { id: 'identity', name: 'Identity', icon: 'identity', price: 28000, desc: 'Logo, mark and lockups, redrawn as clean vector.' },
+  { id: 'typography', name: 'Typography', icon: 'typography', price: 8000, desc: 'Type pairing and hierarchy.' },
+  { id: 'color', name: 'Color', icon: 'color', price: 6000, desc: 'A palette with rules for use.' },
+  { id: 'brandbook', name: 'Brand book', icon: 'brand-book', price: 14000, desc: 'The guidelines your team follows.' },
+  { id: 'packaging', name: 'Packaging', icon: 'packaging', price: 22000, desc: 'Boxes, labels, bags, stickers.' },
+  { id: 'social', name: 'Social', icon: 'social', price: 12000, desc: 'Post and story templates, launch set.' },
+  { id: 'rebrand', name: 'Rebrand audit', icon: 'rebrand', price: 30000, desc: 'What to keep, what to change, how to switch.' }
+];
+const SMAP = Object.fromEntries(SERVICES.map(s => [s.id, s]));
+const PKGS = [
+  { id: 'foundation', name: 'Foundation', ids: ['strategy', 'identity', 'typography', 'color'], price: 52000, days: 9 },
+  { id: 'full', name: 'Full identity', ids: ['strategy', 'naming', 'identity', 'typography', 'color', 'brandbook'], price: 76000, days: 14 },
+  { id: 'launch', name: 'Launch ready', ids: ['strategy', 'identity', 'typography', 'color', 'brandbook', 'packaging', 'social'], price: 92000, days: 21 },
+  { id: 'rebrand', name: 'Rebrand', ids: ['rebrand', 'strategy', 'identity', 'typography', 'color', 'brandbook'], price: 88000, days: 16 }
+];
+const INDUSTRIES = ['Hospitality', 'Food & beverage', 'Retail & products', 'Tech & apps', 'Professional services', 'Other'];
+const PRODUCT_IND = ['Food & beverage', 'Retail & products'];
+const STAGES = [
+  { id: 'new', label: 'Starting from scratch', icon: 'naming', desc: 'No name yet, no identity. We build both.' },
+  { id: 'named', label: 'I have a name', icon: 'identity', desc: 'We build the identity around it.' },
+  { id: 'rebrand', label: 'Rebranding', icon: 'rebrand', desc: 'You have a brand that no longer fits.' }
+];
+const TIMELINES = [
+  { id: 'asap', label: 'As soon as possible', desc: 'We start three days from today.', offset: 3 },
+  { id: 'month', label: 'Within a month', desc: 'We start in two weeks.', offset: 14 },
+  { id: 'flex', label: 'Flexible', desc: "We'll agree a start date together.", offset: 30 }
+];
+const BUDGETS = [
+  { id: 'b1', label: 'Under EGP 60k', max: 60000 },
+  { id: 'b2', label: 'EGP 60k – 100k', max: 100000 },
+  { id: 'b3', label: 'EGP 100k +', max: Infinity }
+];
+const LANGS = [
+  { id: 'en', glyph: 'Aa', label: 'English', desc: 'One language, for an international audience.' },
+  { id: 'ar', glyph: 'ع', label: 'Arabic', desc: 'Written for an Egyptian and Gulf audience.' },
+  { id: 'both', glyph: 'Aa ع', label: 'Both', desc: 'Bilingual by default, every piece in both. No extra cost.' }
+];
+const CHANNELS = ['WhatsApp', 'Email', 'Phone call'];
+const RAIL = ['Your business', 'Stage', 'Services', 'Timeline & budget', 'Language', 'Contact details', 'Review'];
+const KEY = 'tooba-onboarding-v1';
+const TODAY = new Date(2026, 10, 2);
+const egp = n => 'EGP ' + n.toLocaleString('en-US');
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+const eqSet = (a, b) => a.length === b.length && a.every(x => b.includes(x));
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mix = (a, b, t) => 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',') + ')';
+const C1 = hex('#1E4E49'), C2 = hex('#2A5D57'), PAP = hex('#A9BFA3'), APR = '#F08A5D';
+
+const BLANK = { biz: { name: '', city: '', about: '' }, industry: null, stage: null, sel: [], timeline: null, budget: null, lang: null, contact: { name: '', role: '', email: '', phone: '' }, channel: 'WhatsApp', maxStep: 1 };
+
+class Component extends DCLogic {
+  state = (() => {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    return { ...BLANK, ...(saved || {}), step: 0, hasSaved: !!(saved && saved.maxStep > 1), sendI: 0, ref: 'TB-' + (2611000 + Math.floor(Math.random() * 999)) };
+  })();
+
+  componentDidMount() { this.applyJump(); }
+  componentDidUpdate(pp, ps) {
+    if (pp.jumpTo !== this.props.jumpTo) this.applyJump();
+    const { step, hasSaved, sendI, ref, ...data } = this.state;
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    if (ps.step !== step) { if (this.scrollEl) this.scrollEl.scrollTop = 0; window.scrollTo(0, 0); }
+  }
+  componentWillUnmount() { this.stopWall(); clearInterval(this.sendT); }
+
+  applyJump() {
+    const j = this.props.jumpTo;
+    if (!j || j === 'welcome') return;
+    const demo = { biz: { name: 'Sahel House', city: 'Cairo', about: 'A six-room guesthouse in Diplo.' }, industry: 'Hospitality', stage: 'new', sel: PKGS[1].ids.slice(), timeline: 'asap', budget: 'b2', lang: 'both', contact: { name: 'Nour Hassan', role: 'Founder', email: 'nour@sahelhouse.com', phone: '+20 100 000 0000' }, maxStep: 7 };
+    const step = { services: 3, review: 7, confirmation: 9 }[j] || 0;
+    this.setState({ ...demo, step });
+  }
+
+  recPkg() {
+    const { stage, industry } = this.state;
+    const product = PRODUCT_IND.includes(industry);
+    if (stage === 'rebrand') return PKGS[3];
+    if (stage === 'named') return product ? PKGS[2] : PKGS[0];
+    return PKGS[1];
+  }
+  matchPkg(sel) { return PKGS.find(p => eqSet(p.ids, sel)); }
+  pricing(sel) {
+    const p = this.matchPkg(sel);
+    const sum = sel.reduce((a, id) => a + SMAP[id].price, 0);
+    if (p) return { name: p.name, price: p.price, sum, days: p.days, pkg: p };
+    return { name: 'Custom selection', price: sum, sum, days: Math.max(5, 3 + sel.length * 2), pkg: null };
+  }
+
+  go(step) {
+    this.setState(s => ({ step, maxStep: Math.max(s.maxStep, step) }));
+  }
+  next = () => {
+    const { step } = this.state;
+    if (step === 2 && this.state.sel.length === 0) this.setState({ sel: this.recPkg().ids.slice() });
+    if (step === 7) return this.send();
+    this.go(step + 1);
+  };
+  back = () => { const { step } = this.state; this.setState({ step: step - 1 }); };
+  send() {
+    this.setState({ step: 8, sendI: 0 });
+    this.sendT = setInterval(() => {
+      this.setState(s => {
+        if (s.sendI >= 5) { clearInterval(this.sendT); return { step: 9 }; }
+        return { sendI: s.sendI + 1 };
+      });
+    }, 260);
+  }
+
+  // ——— Brick wall (interactive intro) ———
+  wallRef = el => { if (el === this.wallEl) return; this.stopWall(); this.wallEl = el; if (el) this.startWall(el); };
+  scrollRef = el => { this.scrollEl = el; };
+  landingRef = el => { this.landingEl = el; };
+  stopWall() {
+    const W = this.wall; if (!W) return;
+    cancelAnimationFrame(W.raf); W.ro.disconnect();
+    W.c.removeEventListener('pointerdown', W.pd); window.removeEventListener('scroll', W.sc); window.removeEventListener('pointermove', W.pm); window.removeEventListener('pointerup', W.pu);
+    this.wall = null;
+  }
+  startWall(c) {
+    const ctx = c.getContext('2d');
+    const base = '_ds/tooba-studio-design-system-55f68e4d-f524-4fe4-845a-55924ac66d0b/assets/icons/Icon_';
+    const ICONS = ['Strategy', 'Naming', 'Identity', 'Typography', 'Color', 'Brand-book', 'Packaging', 'Social', 'Rebrand', 'Speed', 'Chat', 'Proposal'];
+    const img = (n, t) => { const i = new Image(); i.src = base + n + '_' + t + '.svg'; return i; };
+    const oatI = ICONS.map(n => img(n, 'Oat')), nileI = ICONS.map(n => img(n, 'Nile'));
+    const W = { c, bricks: [], mx: -9999, my: -9999, mvx: 0, mvy: 0, grab: null, last: performance.now(), t0: performance.now() };
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const make = (x, y, extra) => {
+      const d = extra ? rnd(0.8, 1.15) : rnd(0.5, 1.25);
+      const r = Math.random(); const ii = Math.floor(Math.random() * ICONS.length);
+      const kind = d < 0.75 ? 'plain' : r < 0.5 ? 'icon' : r < 0.72 ? 'paper' : r < 0.82 ? 'oat' : 'plain';
+      return { x, y, d, w: rnd(104, 150) * d, h: 50 * d, vx: 0, vy: 0, a: rnd(-0.15, 0.15), va: 0, tilt: rnd(-0.12, 0.12),
+        fx: rnd(0.35, 0.9) * d * 1.3, bf: rnd(0.4, 1.2), ph: rnd(0, 6.28), kind, ii, dots: kind === 'plain' && d > 0.8 && Math.random() < 0.35, extra };
+    };
+    const build = () => {
+      const r = c.getBoundingClientRect(); const dpr = window.devicePixelRatio || 1;
+      W.w = r.width; W.h = r.height; c.width = r.width * dpr; c.height = r.height * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.max(24, Math.min(80, Math.round(W.w * W.h / 21000)));
+      if (!W.bricks.length) {
+        for (let i = 0; i < n; i++) { const b = make(rnd(-W.w * 1.1, -120), rnd(0, W.h)); b.vx = rnd(14, 30) * b.d; b.vy = rnd(-2, 2); W.bricks.push(b); }
+        W.bricks.sort((p, q) => p.d - q.d);
+      }
+    };
+    build();
+    W.ro = new ResizeObserver(build); W.ro.observe(c);
+    const local = e => { const r = c.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+    const hit = (x, y) => {
+      for (let i = W.bricks.length - 1; i >= 0; i--) {
+        const b = W.bricks[i], dx = x - b.x, dy = y - b.y, cs = Math.cos(-b.a), sn = Math.sin(-b.a);
+        if (Math.abs(dx * cs - dy * sn) < b.w / 2 + 4 && Math.abs(dx * sn + dy * cs) < b.h / 2 + 4) return b;
+      }
+      return null;
+    };
+    W.pm = e => {
+      const p = local(e);
+      W.mvx = W.mvx * 0.5 + (p.x - W.mx) * 0.5; W.mvy = W.mvy * 0.5 + (p.y - W.my) * 0.5;
+      W.mx = p.x; W.my = p.y;
+      if (!W.grab) c.style.cursor = hit(p.x, p.y) ? 'grab' : 'crosshair';
+    };
+    W.pd = e => {
+      const p = local(e); W.mx = p.x; W.my = p.y; W.mvx = W.mvy = 0;
+      const b = hit(p.x, p.y);
+      if (b) {
+        W.grab = b; b.ox = b.x - p.x; b.oy = b.y - p.y; c.style.cursor = 'grabbing';
+        W.bricks.splice(W.bricks.indexOf(b), 1); W.bricks.push(b);
+      } else {
+        for (let i = 0; i < 7; i++) {
+          const nb = make(p.x, p.y, true), ang = rnd(0, 6.28), sp = rnd(6, 16);
+          nb.vx = Math.cos(ang) * sp; nb.vy = Math.sin(ang) * sp; nb.va = rnd(-0.2, 0.2); nb.born = performance.now();
+          W.bricks.push(nb);
+        }
+        const extras = W.bricks.filter(x => x.extra);
+        if (extras.length > 42) extras.slice(0, extras.length - 42).forEach(x => W.bricks.splice(W.bricks.indexOf(x), 1));
+      }
+    };
+    W.pu = () => {
+      const b = W.grab; if (!b) return;
+      b.vx = Math.max(-45, Math.min(45, W.mvx)); b.vy = Math.max(-45, Math.min(45, W.mvy)); b.va = b.vx * 0.006;
+      W.grab = null; c.style.cursor = 'grab';
+    };
+    W.sy = window.scrollY; W.sc = () => { const dy = window.scrollY - W.sy; W.sy = window.scrollY; for (const b of W.bricks) { b.vy -= dy * 0.06 * b.d; b.va += dy * 0.0008 * (b.ii % 2 ? 1 : -1); } }; window.addEventListener('scroll', W.sc, { passive: true });
+    c.addEventListener('pointerdown', W.pd); window.addEventListener('pointermove', W.pm); window.addEventListener('pointerup', W.pu);
+    const frame = now => {
+      const k = Math.min(2.5, (now - W.last) / 16.67); W.last = now;
+      ctx.clearRect(0, 0, W.w, W.h);
+      for (const b of W.bricks) {
+        if (b === W.grab) {
+          const nx = W.mx + b.ox, ny = W.my + b.oy;
+          b.va += ((nx - b.x) * 0.01 - b.va) * 0.3; b.x = nx; b.y = ny;
+        } else {
+          b.vx += (b.fx - b.vx) * 0.018 * k;
+          b.vy += (Math.sin(now * 0.001 * b.bf + b.ph) * 0.3 * b.d - b.vy) * 0.02 * k;
+          const dx = b.x - W.mx, dy = b.y - W.my, dist = Math.hypot(dx, dy) || 1, R = 150 + 40 * b.d;
+          if (dist < R) { const f = (1 - dist / R) * 1.5 * k * b.d; b.vx += dx / dist * f; b.vy += dy / dist * f; b.va += Math.sign(dx) * 0.003 * f; }
+          b.x += b.vx * k; b.y += b.vy * k;
+          if (b.x > W.w + 200) { b.x = -180; b.y = rnd(0, W.h); b.vx = b.fx; }
+          if (b.x < -260) b.x = W.w + 180;
+          if (b.y < -90) b.y = W.h + 80; if (b.y > W.h + 90) b.y = -80;
+        }
+        b.a += b.va * k; b.va *= Math.pow(0.95, k); b.a += (b.tilt - b.a) * 0.012 * k;
+        let pop = 1;
+        if (b.born) { const t = (now - b.born) / 380; pop = t < 1 ? 0.3 + 0.7 * (1 - Math.pow(1 - t, 3)) : 1; }
+        const g = b === W.grab ? 1.08 : 1;
+        const w = b.w * pop * g, hh = b.h * pop * g;
+        ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.a);
+        ctx.fillStyle = b.kind === 'paper' ? '#A9BFA3' : b.kind === 'oat' ? '#F1E7D6' : b.kind === 'icon' ? '#2A5D57' : mix(C1, C2, Math.min(1, (b.d - 0.5) * 1.4));
+        ctx.beginPath(); ctx.roundRect(-w / 2, -hh / 2, w, hh, 8 * b.d); ctx.fill();
+        if (b.kind !== 'plain') {
+          const im = (b.kind === 'icon' ? oatI : nileI)[b.ii], s = 32 * b.d * pop;
+          if (im.complete && im.naturalWidth) ctx.drawImage(im, -s / 2, -s / 2, s, s);
+        }
+        if (b.dots) {
+          ctx.fillStyle = APR; const r = 4.5 * b.d;
+          ctx.beginPath(); ctx.arc(w / 2 - 14 * b.d, hh / 2 - 12 * b.d, r, 0, 6.29); ctx.arc(w / 2 - 27 * b.d, hh / 2 - 12 * b.d, r, 0, 6.29); ctx.fill();
+        }
+        ctx.restore();
+      }
+      W.raf = requestAnimationFrame(frame);
+    };
+    W.raf = requestAnimationFrame(frame);
+    this.wall = W;
+  }
+
+  renderVals() {
+    const st = this.state;
+    const showPrices = this.props.showPrices ?? true;
+    const step = st.step;
+    const set = (k, v) => () => this.setState({ [k]: v });
+    const chip = sel => ({ sel, bg: sel ? 'var(--nile)' : 'var(--white)', fg: sel ? 'var(--oat)' : 'var(--nile)', bd: sel ? 'var(--nile)' : 'var(--line-on-light)' });
+    const card = sel => ({ sel, bd: sel ? 'var(--nile)' : 'var(--line-on-light)', bg: sel ? 'var(--white)' : 'rgba(255,255,255,.55)', fill: sel ? 'var(--nile)' : 'transparent' });
+    const field = (grp, k) => e => { const v = e.target.value; this.setState(s => ({ [grp]: { ...s[grp], [k]: v } })); };
+
+    const rec = this.recPkg();
+    const pr = this.pricing(st.sel);
+    const recActive = st.sel.length > 0 && eqSet(st.sel, rec.ids);
+    const product = PRODUCT_IND.includes(st.industry);
+    const reasons = [];
+    if (st.stage === 'rebrand') reasons.push('You already have equity in a name and customers. The audit decides what stays before anything changes.');
+    else if (st.stage === 'new') reasons.push("You don't have a name yet, so naming comes first. Everything else is built on it.");
+    else reasons.push('You have a name. We start from strategy and build the identity around it.');
+    if (product && st.stage === 'named') reasons.push('You sell physical products. Packaging and a launch social set are where customers meet you first.');
+    else reasons.push('A brand book keeps the identity consistent once your team starts using it.');
+    reasons.push(`Fixed at ${egp(rec.price)}, ${egp(rec.ids.reduce((a, id) => a + SMAP[id].price, 0) - rec.price)} less than booking each service alone.`);
+
+    const tl = TIMELINES.find(x => x.id === st.timeline);
+    const startD = addDays(TODAY, tl ? tl.offset : 3);
+    const dates = { brief: fmt(addDays(TODAY, 2)), start: tl && tl.id === 'flex' ? 'To agree' : fmt(startD), end: tl && tl.id === 'flex' ? pr.days + ' days from start' : fmt(addDays(startD, pr.days)), key: (st.timeline || '') + pr.days };
+    const bud = BUDGETS.find(b => b.id === st.budget);
+    const overBudget = !!(bud && st.sel.length && pr.price > bud.max);
+    const fits = PKGS.filter(p => p.price <= (bud ? bud.max : 0)).sort((a, b) => b.price - a.price);
+    const phasePkg = (st.stage === 'rebrand' ? fits.find(p => p.id === 'rebrand') : null) || fits.find(p => p.id !== 'rebrand') || PKGS[0];
+
+    const emailOk = /^\S+@\S+\.\S+$/.test(st.contact.email);
+    const canNext = { 1: st.biz.name.trim() && st.industry, 2: st.stage, 3: st.sel.length > 0, 4: st.timeline && st.budget, 5: st.lang, 6: st.contact.name.trim() && emailOk, 7: true }[step];
+    const hints = { 1: 'Name and industry to continue', 2: 'Pick one to continue', 3: 'Choose at least one service', 4: 'Pick a start and a budget', 5: 'Pick one to continue', 6: 'Name and a valid email', 7: 'Nothing is charged today' };
+
+    const stageL = STAGES.find(x => x.id === st.stage);
+    const langL = LANGS.find(x => x.id === st.lang);
+    const reviewRows = [
+      { label: 'Business', value: st.biz.name || '—', sub: [st.industry, st.biz.city].filter(Boolean).join(' · '), to: 1 },
+      { label: 'Stage', value: stageL ? stageL.label : '—', sub: stageL ? stageL.desc : '', to: 2 },
+      { label: 'Services', value: pr.name, sub: st.sel.map(id => SMAP[id].name).join(', '), to: 3 },
+      { label: 'Timeline', value: tl ? tl.label : '—', sub: 'Delivery ' + dates.end, to: 4 },
+      { label: 'Budget', value: bud ? bud.label : '—', sub: overBudget ? 'Selection is above this range' : 'Selection fits this range', to: 4 },
+      { label: 'Language', value: langL ? langL.label : '—', sub: langL ? langL.desc : '', to: 5 },
+      { label: 'Contact', value: st.contact.name + (st.contact.role ? ', ' + st.contact.role : ''), sub: [st.contact.email, st.channel].filter(Boolean).join(' · '), to: 6 }
+    ].map((r, i) => ({ ...r, border: i ? '1px solid var(--line-on-light)' : 'none', delay: (i * 50) + 'ms', edit: () => this.go(r.to) }));
+
+    return {
+      showPrices,
+      isWelcome: step === 0, isFlow: step >= 1 && step <= 7, isSending: step === 8, isDone: step === 9,
+      hasSaved: st.hasSaved, noSaved: !st.hasSaved,
+      startLabel: st.hasSaved ? 'Continue where you left off' : 'Start your project',
+      start: () => this.go(st.hasSaved ? Math.min(st.maxStep, 7) : 1),
+      restart: () => { clearInterval(this.sendT); this.setState({ ...BLANK, step: 1, hasSaved: false }); },
+      goWelcome: () => this.setState({ step: 0, hasSaved: true }),
+      wallRef: this.wallRef, scrollRef: this.scrollRef, landingRef: this.landingRef,
+      scrollToStart: () => { const el = this.landingEl; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24, behavior: 'smooth' }); },
+      resume: () => this.go(Math.min(st.maxStep, 7)),
+      cantLanding: !(st.biz.name.trim() && st.industry),
+      landingHint: st.biz.name.trim() && st.industry ? 'Next: where you\'re starting from' : 'Name and industry to continue',
+      fromLanding: () => this.go(2),
+      step: 's' + step,
+      progress: Math.round((Math.min(step, 7) - 1) / 7 * 100 + 100 / 7) + '%',
+      s: { about: step === 1, stage: step === 2, services: step === 3, timeline: step === 4, language: step === 5, contact: step === 6, review: step === 7 },
+      rail: RAIL.map((label, i) => {
+        const n = i + 1, active = n === step, done = n < step, reach = n <= st.maxStep;
+        return { num: String(n).padStart(2, '0'), label, active, done, bg: active ? 'var(--nile-step)' : 'transparent', op: active || reach ? 1 : 0.5, cursor: reach ? 'pointer' : 'default', go: () => reach && this.go(n) };
+      }),
+      hasSelection: st.sel.length > 0, noSelection: st.sel.length === 0,
+      sel: {
+        key: st.sel.join(','), name: pr.name, price: egp(pr.price), days: pr.days + ' days',
+        count: st.sel.length + (st.sel.length === 1 ? ' service' : ' services'),
+        saving: '− ' + egp(pr.sum - pr.price),
+        note: pr.pkg ? `Package price applies · you save ${egp(pr.sum - pr.price)}` : 'Custom selections are priced per service'
+      },
+      savingRow: showPrices && !!pr.pkg,
+      selList: st.sel.map(id => ({ name: SMAP[id].name, price: egp(SMAP[id].price) })),
+      biz: st.biz, contact: st.contact,
+      on: { bizName: field('biz', 'name'), bizCity: field('biz', 'city'), bizAbout: field('biz', 'about'), cName: field('contact', 'name'), cRole: field('contact', 'role'), cEmail: field('contact', 'email'), cPhone: field('contact', 'phone') },
+      emailError: st.contact.email && !emailOk ? 'That email looks incomplete.' : undefined,
+      industries: INDUSTRIES.map(l => ({ label: l, ...chip(st.industry === l), pick: set('industry', l) })),
+      stages: STAGES.map((o, i) => ({ ...o, ...card(st.stage === o.id), delay: i * 70 + 'ms', pick: () => this.setState({ stage: o.id, sel: st.stage === o.id ? st.sel : [] }) })),
+      rec: {
+        name: rec.name, list: rec.ids.map(id => SMAP[id].name).join(' · '), price: egp(rec.price), days: rec.days + ' days, start to finish',
+        reasons: reasons.map((text, i) => ({ n: String(i + 1).padStart(2, '0'), text, delay: 200 + i * 90 + 'ms' })),
+        active: recActive, notActive: !recActive, use: () => this.setState({ sel: rec.ids.slice() })
+      },
+      otherPkgs: PKGS.filter(p => p.id !== rec.id).map(p => {
+        const on = eqSet(p.ids, st.sel);
+        return { name: p.name, sel: on, bd: on ? 'var(--nile)' : 'var(--line-on-light)', meta: (showPrices ? egp(p.price) + ' · ' : '') + p.days + ' days · ' + p.ids.length + ' services', use: () => this.setState({ sel: p.ids.slice() }) };
+      }),
+      services: SERVICES.map((o, i) => {
+        const on = st.sel.includes(o.id);
+        return { ...o, ...card(on), price: egp(o.price), delay: 120 + i * 35 + 'ms', toggle: () => this.setState(s => ({ sel: on ? s.sel.filter(x => x !== o.id) : SERVICES.map(x => x.id).filter(id => s.sel.includes(id) || id === o.id) })) };
+      }),
+      timelines: TIMELINES.map(o => ({ ...o, ...card(st.timeline === o.id), pick: set('timeline', o.id) })),
+      hasTimeline: !!tl, dates,
+      budgets: BUDGETS.map(o => ({ label: o.label, ...chip(st.budget === o.id), pick: set('budget', o.id) })),
+      overBudget,
+      phase: { name: phasePkg.name, price: egp(phasePkg.price), use: () => this.setState({ sel: phasePkg.ids.slice() }) },
+      langs: LANGS.map((o, i) => ({ ...o, ...card(st.lang === o.id), rec: o.id === 'both', delay: i * 70 + 'ms', pick: set('lang', o.id) })),
+      channels: CHANNELS.map(l => ({ label: l, ...chip(st.channel === l), pick: set('channel', l) })),
+      review: reviewRows,
+      back: () => step === 1 ? this.setState({ step: 0, hasSaved: true }) : this.back(),
+      next: this.next, cantNext: !canNext,
+      nextLabel: step === 7 ? 'Send to Tooba' : step === 2 && st.stage ? 'See our recommendation' : 'Continue',
+      nextVariant: step === 7 ? 'primary' : 'secondary',
+      footHint: canNext ? (step === 7 ? hints[7] : 'Step ' + step + ' of 7') : hints[step],
+      sendBricks: [0, 1, 2, 3].map(i => ({ bg: i < st.sendI ? (i === 3 ? 'var(--apricot)' : 'var(--oat)') : 'var(--nile-step-2)' })),
+      refNo: st.ref,
+      firstName: (st.contact.name || 'there').split(' ')[0],
+      nextSteps: [
+        { num: '01', title: 'Strategy brief', when: 'By ' + dates.brief },
+        { num: '02', title: 'Three creative routes', when: 'You pick one, we refine it' },
+        { num: '03', title: 'Final delivery', when: dates.end }
+      ].map((n, i) => ({ ...n, delay: 600 + i * 120 + 'ms' }))
+    };
+  }
+}
+</script>
+</body>
+</html>
