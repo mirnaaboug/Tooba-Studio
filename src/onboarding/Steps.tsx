@@ -1,5 +1,5 @@
 import { Button, Dots, Eyebrow, Icon, Input } from '../ds/components';
-import { BUDGETS, CHANNELS, LANGS, PKGS, SERVICES, SMAP, STAGES, TIMELINES, egp, eqSet } from './data';
+import { BUDGETS, CHANNELS, LANGS, PKGS, SERVICES, SMAP, STAGES, TIMELINES, egp, eqSet, priceLabel, type Service } from './data';
 import { BusinessFields } from './BusinessFields';
 import type { Derived } from './derived';
 import type { Onboarding } from './state';
@@ -60,6 +60,14 @@ export function StageStep({ ob }: StepProps) {
 }
 
 /* ——— 03 · Services ——— */
+/** What a service card says instead of a per-service price. */
+function serviceNote(o: Service) {
+  const inc = o.from && { brick: 'In every package', house: 'From House up', landmark: 'In Landmark' }[o.from];
+  const add = o.addon && `${o.addon.isFrom ? 'from ' : ''}${egp(o.addon.price)}${o.addon.unit ? ' ' + o.addon.unit : ''}`;
+  return o.from === 'landmark' && add ? `${add} · ${inc}` : inc ?? add ?? '';
+}
+
+/* ——— 03 · Services (packages) ——— */
 export function ServicesStep({ ob, d, showPrices }: StepProps) {
   const { st, patch } = ob;
   const { rec, pr, recActive, reasons } = d;
@@ -77,8 +85,8 @@ export function ServicesStep({ ob, d, showPrices }: StepProps) {
           <div style={{ font: '400 40px/1.1 var(--font-serif)' }}>{rec.name}</div>
           <div style={{ font: 'var(--type-body)', color: 'var(--text-muted-on-dark)' }}>{rec.ids.map((id) => SMAP[id].name).join(' · ')}</div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginTop: 8, flexWrap: 'wrap' }}>
-            {showPrices && <span style={{ font: '400 28px/1 var(--font-sans)' }}>{egp(rec.price)}</span>}
-            <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted-on-dark)' }}>{rec.days} days, start to finish</span>
+            {showPrices && <span style={{ font: '400 28px/1 var(--font-sans)' }}>{priceLabel(rec)}</span>}
+            <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted-on-dark)' }}>{rec.tag ?? `${rec.days} days`}, start to finish</span>
           </div>
           <div style={{ marginTop: 12, display: 'flex', gap: 12, alignItems: 'center', minHeight: 44 }}>
             {recActive ? (
@@ -103,9 +111,9 @@ export function ServicesStep({ ob, d, showPrices }: StepProps) {
       </div>
 
       <div style={col(14)}>
-        <Eyebrow>Other packages</Eyebrow>
+        <Eyebrow>Our packages</Eyebrow>
         <div className="tb-grid-3" style={grid3(12)}>
-          {PKGS.filter((p) => p.id !== rec.id).map((p) => {
+          {PKGS.map((p) => {
             const on = eqSet(p.ids, st.sel);
             return (
               <button
@@ -120,7 +128,7 @@ export function ServicesStep({ ob, d, showPrices }: StepProps) {
                   <span style={{ font: '400 20px/1.2 var(--font-serif)' }}>{p.name}</span>
                   {on && <Dots size={5} />}
                 </div>
-                <span style={muted}>{(showPrices ? egp(p.price) + ' · ' : '') + p.days + ' days · ' + p.ids.length + ' services'}</span>
+                <span style={muted}>{(showPrices ? priceLabel(p) + ' · ' : '') + p.tag}</span>
               </button>
             );
           })}
@@ -130,7 +138,7 @@ export function ServicesStep({ ob, d, showPrices }: StepProps) {
       <div style={col(14)}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
           <Eyebrow>Customise</Eyebrow>
-          <span style={muted}>{pr.pkg ? `Package price applies · you save ${egp(pr.sum - pr.price)}` : 'Custom selections are priced per service'}</span>
+          <span style={muted}>{pr.pkg ? `Priced as ${pr.name}` : 'Add-ons are priced on their own'}</span>
         </div>
         <div className="tb-grid-3" style={grid3(12)}>
           {SERVICES.map((o, i) => {
@@ -154,7 +162,7 @@ export function ServicesStep({ ob, d, showPrices }: StepProps) {
                   <span style={{ font: '400 20px/1.2 var(--font-serif)' }}>{o.name}</span>
                   <span style={muted}>{o.desc}</span>
                 </div>
-                {showPrices && <span style={{ font: '500 13px/1 var(--font-sans)', marginTop: 'auto' }}>{egp(o.price)}</span>}
+                {showPrices && <span style={{ font: '500 13px/1 var(--font-sans)', marginTop: 'auto' }}>{serviceNote(o)}</span>}
               </button>
             );
           })}
@@ -223,8 +231,8 @@ export function TimelineStep({ ob, d }: StepProps) {
             <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
               <Dots size={6} style={{ marginTop: 8 }} />
               <div style={col(4)}>
-                <span style={{ font: '400 18px/1.3 var(--font-serif)' }}>Your selection is {egp(pr.price)}, above this range.</span>
-                <span style={muted}>We can phase it: start with {phase.name} ({egp(phase.price)}) and add the rest when you're ready.</span>
+                <span style={{ font: '400 18px/1.3 var(--font-serif)' }}>Your selection is {priceLabel(pr)}, above this range.</span>
+                <span style={muted}>We can phase it: start with {phase.name} ({priceLabel(phase)}) and add the rest when you're ready.</span>
               </div>
             </div>
             <Button variant="outline" size="sm" onClick={() => patch({ sel: phase.ids.slice() })}>Switch to {phase.name}</Button>
@@ -320,20 +328,15 @@ export function ReviewStep({ ob, d, showPrices }: StepProps) {
         <div style={{ background: 'var(--nile)', color: 'var(--oat)', borderRadius: 8, padding: 28, ...col(14), position: 'sticky', top: 0 }}>
           <Eyebrow tone="dark">Fixed price</Eyebrow>
           <div style={{ font: '400 28px/1.15 var(--font-serif)', marginBottom: 6 }}>{pr.name}</div>
-          {st.sel.map((id) => (
-            <div key={id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, font: 'var(--type-caption)', color: 'var(--text-muted-on-dark)' }}>
-              <span>{SMAP[id].name}</span>
-              {showPrices && <span>{egp(SMAP[id].price)}</span>}
+          <div style={{ font: 'var(--type-caption)', color: 'var(--text-muted-on-dark)' }}>{st.sel.filter((id) => SMAP[id]).map((id) => SMAP[id].name).join(' · ')}</div>
+          {showPrices && pr.lines.map((l) => (
+            <div key={l.label} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, font: 'var(--type-caption)' }}>
+              <span>{l.label}{l.unit ? ` (${l.unit})` : ''}</span><span>{priceLabel(l)}</span>
             </div>
           ))}
-          {showPrices && pr.pkg && (
-            <div style={{ display: 'flex', justifyContent: 'space-between', font: 'var(--type-caption)' }}>
-              <span>Package saving</span><span>− {egp(pr.sum - pr.price)}</span>
-            </div>
-          )}
           <div style={{ borderTop: '1px solid var(--line-on-dark)', paddingTop: 16, marginTop: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
-            <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted-on-dark)' }}>{pr.days} days</span>
-            {showPrices && <span style={{ font: '400 28px/1 var(--font-sans)' }}>{egp(pr.price)}</span>}
+            <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted-on-dark)' }}>{pr.pkg?.tag ?? `${pr.days} days`}</span>
+            {showPrices && <span style={{ font: '400 28px/1 var(--font-sans)' }}>{priceLabel(pr)}</span>}
           </div>
         </div>
       </div>

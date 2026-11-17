@@ -29,7 +29,7 @@ export function derive(st: OnboardingState, today: Date) {
 
   const bud = BUDGETS.find((b) => b.id === st.budget);
   const overBudget = !!(bud && st.sel.length && pr.price > bud.max);
-  const phase = phasePackage(bud ? bud.max : 0, st.stage);
+  const phase = phasePackage(bud ? bud.max : 0);
 
   const emailOk = EMAIL_RE.test(st.contact.email);
   const canNext = !!({
@@ -47,7 +47,7 @@ export function derive(st: OnboardingState, today: Date) {
   const review = [
     { label: 'Business', value: st.biz.name || '—', sub: [st.industry, st.biz.city].filter(Boolean).join(' · '), to: 1 },
     { label: 'Stage', value: stageL ? stageL.label : '—', sub: stageL ? stageL.desc : '', to: 2 },
-    { label: 'Services', value: pr.name, sub: st.sel.map((id) => SMAP[id].name).join(', '), to: 3 },
+    { label: 'Services', value: pr.name, sub: st.sel.filter((id) => SMAP[id]).map((id) => SMAP[id].name).join(', '), to: 3 },
     { label: 'Timeline', value: tl ? tl.label : '—', sub: 'Delivery ' + dates.end, to: 4 },
     { label: 'Budget', value: bud ? bud.label : '—', sub: overBudget ? 'Selection is above this range' : 'Selection fits this range', to: 4 },
     { label: 'Language', value: langL ? langL.label : '—', sub: langL ? langL.desc : '', to: 5 },

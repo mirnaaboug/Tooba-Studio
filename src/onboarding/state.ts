@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { db } from '../lib/supabase';
-import { PKGS, pricing, recommend, type BudgetId, type LangId, type ServiceId, type StageId, type TimelineId } from './data';
+import { PKGS, isServiceId, pricing, recommend, type BudgetId, type LangId, type ServiceId, type StageId, type TimelineId } from './data';
 
 /** Steps: 0 welcome/landing · 1–7 flow · 8 sending · 9 done */
 export type Step = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
@@ -45,7 +45,12 @@ const DEMO: Answers = {
 };
 
 function load(): Partial<Answers> | null {
-  try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; }
+  try {
+    const a = JSON.parse(localStorage.getItem(KEY) || 'null') as Partial<Answers> | null;
+    // Answers saved before the price list changed may hold services we no longer list.
+    if (a?.sel) a.sel = a.sel.filter(isServiceId);
+    return a;
+  } catch { return null; }
 }
 
 const newRef = () => 'TB-' + (2611000 + Math.floor(Math.random() * 999));

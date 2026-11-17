@@ -202,7 +202,7 @@ export function ClientDetail({ id }: { id: string }) {
                 <dt>Services</dt><dd>{(s.services ?? []).map(label).join(', ') || '—'}</dd>
                 <dt>Form showed</dt><dd>{s.package_name ?? '—'}{s.estimate_egp != null && ` · ${money(s.estimate_egp)}`}</dd>
                 <dt>Timeline</dt><dd>{label(s.timeline)}</dd>
-                <dt>Budget</dt><dd>{({ b1: 'Under EGP 60k', b2: 'EGP 60k – 100k', b3: 'EGP 100k +' } as Record<string, string>)[s.budget ?? ''] ?? '—'}</dd>
+                <dt>Budget</dt><dd>{({ b1: 'Under EGP 40k', b2: 'EGP 40k – 100k', b3: 'EGP 100k +' } as Record<string, string>)[s.budget ?? ''] ?? '—'}</dd>
                 <dt>Language</dt><dd>{({ en: 'English', ar: 'Arabic', both: 'Both' } as Record<string, string>)[s.language ?? ''] ?? '—'}</dd>
                 <dt>Prefers</dt><dd>{s.preferred_channel ?? '—'}</dd>
               </dl>
