@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { PKGS, recommend, type BudgetId, type LangId, type ServiceId, type StageId, type TimelineId } from './data';
+import { db } from '../lib/supabase';
+import { PKGS, pricing, recommend, type BudgetId, type LangId, type ServiceId, type StageId, type TimelineId } from './data';
 
 /** Steps: 0 welcome/landing · 1–7 flow · 8 sending · 9 done */
 export type Step = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
@@ -22,6 +23,9 @@ export interface OnboardingState extends Answers {
   hasSaved: boolean;
   sendI: number;
   ref: string;
+  /** Reference returned by the server once the submission is saved. */
+  sentRef: string | null;
+  sendError: string | null;
 }
 
 export const BLANK: Answers = {
@@ -50,7 +54,7 @@ const newRef = () => 'TB-' + (2611000 + Math.floor(Math.random() * 999));
 function initial(): OnboardingState {
   const saved = load();
   const base: OnboardingState = {
-    ...BLANK, ...(saved || {}), step: 0, hasSaved: !!(saved && (saved.maxStep ?? 1) > 1), sendI: 0, ref: newRef(),
+    ...BLANK, ...(saved || {}), step: 0, hasSaved: !!(saved && (saved.maxStep ?? 1) > 1), sendI: 0, ref: newRef(), sentRef: null, sendError: null,
   };
   const jump = new URLSearchParams(window.location.search).get('jump');
   const jumpStep = ({ services: 3, review: 7, confirmation: 9 } as Record<string, Step>)[jump ?? ''];
@@ -63,7 +67,7 @@ export function useOnboarding() {
 
   // Persist answers (not transient UI state) on every change.
   useEffect(() => {
-    const { step: _s, hasSaved: _h, sendI: _i, ref: _r, ...data } = st;
+    const { step: _s, hasSaved: _h, sendI: _i, ref: _r, sentRef: _x, sendError: _e, ...data } = st;
     try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { /* storage unavailable */ }
   }, [st]);
 
@@ -75,16 +79,32 @@ export function useOnboarding() {
 
   const go = useCallback((step: Step) => patch((s) => ({ step, maxStep: Math.max(s.maxStep, step) })), [patch]);
 
+  // Saves the answers as a lead in Supabase while the "first brick" animation plays.
   const send = useCallback(() => {
-    patch({ step: 8, sendI: 0 });
+    patch({ step: 8, sendI: 0, sentRef: null, sendError: null });
     window.clearInterval(sendT.current);
     sendT.current = window.setInterval(() => {
       setSt((s) => {
-        if (s.sendI >= 5) { window.clearInterval(sendT.current); return { ...s, step: 9 }; }
+        if (s.sendI >= 5) { window.clearInterval(sendT.current); return s; }
         return { ...s, sendI: s.sendI + 1 };
       });
     }, 260);
-  }, [patch]);
+    const { biz, industry, stage, sel, timeline, budget, lang, contact, channel } = st;
+    const pr = pricing(sel);
+    db.rpc<string>('submit_onboarding', {
+      payload: { biz, industry, stage, sel, timeline, budget, lang, contact, channel, pricing: { name: pr.name, price: pr.price, days: pr.days } },
+    })
+      .then((ref) => patch({ sentRef: ref }))
+      .catch((e: unknown) => {
+        window.clearInterval(sendT.current);
+        patch({ sendError: e instanceof Error ? e.message : 'Something went wrong' });
+      });
+  }, [st, patch]);
+
+  // Move to the confirmation once the animation has played and the server has answered.
+  useEffect(() => {
+    if (st.step === 8 && st.sendI >= 5 && st.sentRef) patch({ step: 9, ref: st.sentRef });
+  }, [st.step, st.sendI, st.sentRef, patch]);
 
   const next = useCallback(() => {
     if (st.step === 7) return send();
@@ -100,10 +120,10 @@ export function useOnboarding() {
 
   const restart = useCallback(() => {
     window.clearInterval(sendT.current);
-    setSt((s) => ({ ...s, ...BLANK, step: 1, hasSaved: false, ref: newRef() }));
+    setSt((s) => ({ ...s, ...BLANK, step: 1, hasSaved: false, ref: newRef(), sentRef: null, sendError: null }));
   }, []);
 
-  return { st, patch, go, next, back, restart };
+  return { st, patch, go, next, back, restart, send };
 }
 
 export type Onboarding = ReturnType<typeof useOnboarding>;

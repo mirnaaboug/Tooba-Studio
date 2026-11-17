@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/studio", "destination": "/index.html" },
+    { "source": "/studio/:path*", "destination": "/index.html" }
+  ],
+  "headers": [
+    { "source": "/studio(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
+  ]
+}

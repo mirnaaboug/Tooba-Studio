@@ -3,3 +3,6 @@ dist
 *.local
 *.tsbuildinfo
 tooba-studio.zip
+.env
+.env.*
+!.env.example
