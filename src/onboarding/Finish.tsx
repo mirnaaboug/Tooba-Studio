@@ -4,16 +4,29 @@ import type { Derived } from './derived';
 import type { Onboarding } from './state';
 import { EASE, enter, muted } from './ui';
 
-/** "Laying the first brick": four bricks fill in, the last one apricot. */
-export function Sending({ sendI }: { sendI: number }) {
+/** "Laying the first brick": four bricks fill in, the last one apricot. Shows a retry if saving fails. */
+export function Sending({ sendI, error, onRetry, onBack }: { sendI: number; error: string | null; onRetry: () => void; onBack: () => void }) {
   return (
-    <div role="status" style={{ height: '100vh', background: 'var(--nile)', color: 'var(--oat)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 28, animation: 'tbFade 300ms both' }}>
+    <div role="status" style={{ height: '100vh', background: 'var(--nile)', color: 'var(--oat)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 28, padding: 24, textAlign: 'center', animation: 'tbFade 300ms both' }}>
       <div style={{ display: 'flex', gap: 10 }} aria-hidden="true">
         {[0, 1, 2, 3].map((i) => (
           <div key={i} style={{ width: 44, height: 22, borderRadius: 6, background: i < sendI ? (i === 3 ? 'var(--apricot)' : 'var(--oat)') : 'var(--nile-step-2)', transition: `background 240ms ${EASE}` }} />
         ))}
       </div>
-      <Eyebrow tone="dark">Laying the first brick</Eyebrow>
+      {error ? (
+        <>
+          <Eyebrow tone="dark">That brick didn't set</Eyebrow>
+          <p style={{ font: 'var(--type-body)', color: 'var(--text-muted-on-dark)', margin: 0, maxWidth: '44ch' }}>
+            We couldn't send your answers ({error}). They're saved on this device, so nothing is lost. Try again, or message us on WhatsApp.
+          </p>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Button onClick={onRetry}>Try again</Button>
+            <Button variant="outline" tone="dark" onClick={onBack}>Back to review</Button>
+          </div>
+        </>
+      ) : (
+        <Eyebrow tone="dark">Laying the first brick</Eyebrow>
+      )}
     </div>
   );
 }
@@ -40,7 +53,7 @@ export function Done({ ob, d }: { ob: Onboarding; d: Derived }) {
             Thank you, {firstName}. Your strategy brief lands within 48 hours.
           </h1>
           <p style={{ font: 'var(--type-intro)', margin: 0, maxWidth: '50ch', animation: enter(600, 400) }}>
-            We've sent a copy to {st.contact.email}. Expect it by {d.dates.brief}, with your dated quote for {d.pr.name}.
+            We'll be in touch {({ Email: 'by email', 'Phone call': 'by phone' } as Record<string, string>)[st.channel] ?? 'on WhatsApp'}. Expect it by {d.dates.brief}, with your dated quote for {d.pr.name}.
           </p>
         </div>
         <div className="tb-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 24, borderTop: '1px solid var(--line-on-light)', paddingTop: 24 }}>

@@ -20,7 +20,7 @@ export default function App() {
     <div style={{ minHeight: '100vh', background: 'var(--oat)', color: 'var(--nile)', font: 'var(--type-body)' }}>
       {st.step === 0 && <Landing ob={ob} />}
       {st.step >= 1 && st.step <= 7 && <Flow ob={ob} d={d} showPrices={SHOW_PRICES} />}
-      {st.step === 8 && <Sending sendI={st.sendI} />}
+      {st.step === 8 && <Sending sendI={st.sendI} error={st.sendError} onRetry={ob.send} onBack={() => ob.go(7)} />}
       {st.step === 9 && <Done ob={ob} d={d} />}
     </div>
   );
