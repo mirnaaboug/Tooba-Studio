@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Button, Dots, Eyebrow, Icon, Logo } from '../ds/components';
-import { RAIL, egp } from './data';
+import { RAIL, priceLabel } from './data';
 import type { Step } from './state';
 import { AboutStep, ContactStep, LanguageStep, ReviewStep, ServicesStep, StageStep, TimelineStep, type StepProps } from './Steps';
 import { EASE, enter } from './ui';
@@ -65,9 +65,9 @@ export function Flow({ ob, d, showPrices }: StepProps) {
               <Eyebrow tone="dark">Your selection</Eyebrow>
               <div style={{ font: '400 24px/1.2 var(--font-serif)' }}>{pr.name}</div>
               <div style={{ font: 'var(--type-caption)', color: 'var(--text-muted-on-dark)' }}>
-                {st.sel.length + (st.sel.length === 1 ? ' service' : ' services')} · {pr.days} days
+                {st.sel.length + (st.sel.length === 1 ? ' service' : ' services')} · {pr.pkg?.tag ?? `${pr.days} days`}
               </div>
-              {showPrices && <div style={{ font: '400 20px/1.2 var(--font-sans)', marginTop: 4 }}>{egp(pr.price)}</div>}
+              {showPrices && <div style={{ font: '400 20px/1.2 var(--font-sans)', marginTop: 4 }}>{priceLabel(pr)}</div>}
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
